@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>aixm4worldwind</groupId>
+	<artifactId>aixm4worldwind</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<name>aixm4worldwind</name>
+	<description>AIXM 5.1 support for WorldWind</description>
+	<inceptionYear>2013</inceptionYear>
+
+	<properties>
+		<license.header.file>${basedir}/src/main/config/license_header.txt</license.header.file>
+		<assemble.executable.name>aixm4worldwind</assemble.executable.name>
+		<assemble.dir>${project.build.directory}/appassembler</assemble.dir>
+		<assemble.bin.folder>bin</assemble.bin.folder>
+	</properties>
+	
+	<licenses>
+		<license>
+			<name>GPL v2</name>
+			<url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+		</license>
+	</licenses>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<configuration>
+					<header>${license.header.file}</header>
+					<includes>
+						<include>src/**/*.java</include>
+					</includes>
+					<excludes>
+						<exclude>src/**/openstreetmap/**/*.java</exclude>
+					</excludes>
+					<properties>
+						<year>${project.inceptionYear}</year>
+					</properties>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>assemble</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<programs>
+								<program>
+									<mainClass>org.n52.ses.mapclient.MapClient</mainClass>
+									<name>${assemble.executable.name}</name>
+								</program>
+							</programs>
+							<assembleDirectory>${assemble.dir}</assembleDirectory>
+							<repositoryName>lib</repositoryName>
+							<repositoryLayout>flat</repositoryLayout>
+							<useWildcardClassPath>true</useWildcardClassPath>
+							<binFolder>${assemble.bin.folder}</binFolder>
+							<binFileExtensions>
+								<unix>.sh</unix>
+							</binFileExtensions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.2</version>
+				<executions>
+					<execution>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/config/assemble.xml</descriptor>
+							</descriptors>
+							<finalName>${assemble.executable.name}-${project.version}</finalName>
+							<outputDirectory>${project.build.directory}/assembled-release</outputDirectory>
+							<workDirectory>${project.build.directory}/assembled-release/work</workDirectory>
+						</configuration>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>install</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.googlecode.mavennatives</groupId>
+				<artifactId>maven-nativedependencies-plugin</artifactId>
+				<version>0.0.7</version>
+				<configuration>
+					<nativesTargetDir>target/natives</nativesTargetDir>
+					<separateDirs>false</separateDirs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>unpacknatives</id>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<targetPath>${assemble.dir}</targetPath>
+				<directory>src/main/scripts</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<targetPath>${project.build.directory}/classes</targetPath>
+			</resource>
+		</resources>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>n52-releases</id>
+			<name>52n Releases</name>
+			<url>http://52north.org/maven/repo/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>n52-snapshots</id>
+			<name>52n Snapshots</name>
+			<url>http://52north.org/maven/repo/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+			</snapshots>
+		</repository>
+	</repositories>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.6</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vividsolutions</groupId>
+			<artifactId>jts</artifactId>
+			<version>1.12</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>xercesImpl</artifactId>
+					<groupId>xerces</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>gov.nasa</groupId>
+			<artifactId>wwj</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.n52.sensorweb</groupId>
+			<artifactId>52n-xml-aixm-v511</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.n52.sensorweb</groupId>
+			<artifactId>52n-xml-gml-v321</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.n52.sensorweb</groupId>
+			<artifactId>52n-oxf-conversion</artifactId>
+			<version>2.0.0-alpha.3-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+</project>

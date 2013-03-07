@@ -1,0 +1,26 @@
+<assembly>
+	<id>binaries</id>
+	<formats>
+		<format>dir</format>
+		<format>zip</format>
+		<format>tar.gz</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${assemble.dir}</directory>
+			<outputDirectory>/</outputDirectory>
+			<excludes>
+				<exclude>**/*.sh</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>${assemble.dir}</directory>
+			<outputDirectory>/</outputDirectory>
+			<fileMode>0755</fileMode>
+			<includes>
+				<include>**/*.sh</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>
