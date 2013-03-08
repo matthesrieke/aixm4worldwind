@@ -30,21 +30,21 @@ import org.n52.worldwind.aixm.xmlbeans.TimeSliceTools;
 import aero.aixm.schema.x51.AirspaceDocument;
 import aero.aixm.schema.x51.RouteSegmentDocument;
 
-public class OWS9AirspaceLayer extends AirspaceLayer {
+public class DemoAirspaceLayer extends AirspaceLayer {
 
-	private Airspace muenster;
+	private Airspace airspace;
 	private Airspace route;
 
-	public OWS9AirspaceLayer() throws XmlException, IOException {
+	public DemoAirspaceLayer() throws XmlException, IOException {
 		super();
-//		setMuenster(createMuensterAirspace());
-//		route = createRouteToMuenster();
-//		this.addAirspace(getMuenster());
-//		this.addAirspace(route);
+		this.airspace = createAirspace();
+		this.route = createRoute();
+		this.addAirspace(getAirspace());
+		this.addAirspace(route);
 		this.setEnableAntialiasing(true);
 	}
 
-	private Airspace createRouteToMuenster() throws XmlException, IOException {
+	private Airspace createRoute() throws XmlException, IOException {
 		RouteSegmentDocument routeDoc = RouteSegmentDocument.Factory.parse(getClass().getResourceAsStream("/aixm_test1_routesegment_touches.xml"));
 
 		TimeSliceTools.resolveTimeSliceFromValidTime(routeDoc.getRouteSegment(), new Date());
@@ -55,7 +55,7 @@ public class OWS9AirspaceLayer extends AirspaceLayer {
 		return route;
 	}
 
-	private Airspace createMuensterAirspace() throws XmlException, IOException {
+	private Airspace createAirspace() throws XmlException, IOException {
 		AirspaceDocument routeDoc = AirspaceDocument.Factory.parse(getClass().getResourceAsStream("/aixm_test1_airspace.xml"));
 
 		TimeSliceTools.resolveTimeSliceFromValidTime(routeDoc.getAirspace(), new Date());
@@ -75,12 +75,13 @@ public class OWS9AirspaceLayer extends AirspaceLayer {
 		a.getAttributes().setOutlineWidth(3.0);
 	}
 
-	public void setMuenster(Airspace muenster) {
-		this.muenster = muenster;
+
+	public Airspace getAirspace() {
+		return airspace;
 	}
 
-	public Airspace getMuenster() {
-		return muenster;
+	public Airspace getRoute() {
+		return route;
 	}			
-
+	
 }

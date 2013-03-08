@@ -65,7 +65,7 @@ public class WorldWindMap extends JFrame {
 
 	private AppPanel wwjPanel;
 	private LayerPanel layerPanel;
-	private OWS9AirspaceLayer airspaces;
+	private DemoAirspaceLayer demoLayer;
 
 	protected void initialize(boolean includeStatusBar, boolean includeLayerPanel) throws XmlException, IOException
 	{
@@ -134,8 +134,8 @@ public class WorldWindMap extends JFrame {
 		this.setResizable(true);
 		this.setVisible(true);
 		
-		airspaces = new OWS9AirspaceLayer();
-		wwjPanel.getWwd().getModel().getLayers().add(airspaces);
+		demoLayer = new DemoAirspaceLayer();
+		wwjPanel.getWwd().getModel().getLayers().add(demoLayer);
 		
 		zoomToDefault();
 	}
@@ -146,7 +146,7 @@ public class WorldWindMap extends JFrame {
 		Globe globe = wwjPanel.getWwd().getModel().getGlobe();
 		double ve = wwjPanel.getWwd().getSceneController().getVerticalExaggeration();
 
-		Extent extent = airspaces.getMuenster().getExtent(globe, ve);
+		Extent extent = demoLayer.getAirspace().getExtent(globe, ve);
 
 		Angle fov = wwjPanel.getWwd().getView().getFieldOfView();
 
