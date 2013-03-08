@@ -69,7 +69,7 @@
 						<configuration>
 							<programs>
 								<program>
-									<mainClass>org.n52.ses.mapclient.MapClient</mainClass>
+									<mainClass>org.n52.worldwind.WorldWindMap</mainClass>
 									<name>${assemble.executable.name}</name>
 								</program>
 							</programs>
