@@ -16,9 +16,11 @@
 		<assemble.executable.name>aixm4worldwind</assemble.executable.name>
 		<assemble.dir>${project.build.directory}/appassembler</assemble.dir>
 		<assemble.bin.folder>bin</assemble.bin.folder>
-		<wwj.version>1.5</wwj.version>
+		<wwj.version>1.5.0-SNAPSHOT</wwj.version>
 		<n52.xml.version>1.1.4</n52.xml.version>
 		<n52.oxf.version>2.0.0-alpha.3-SNAPSHOT</n52.oxf.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	
 	<licenses>
@@ -73,6 +75,7 @@
 									<name>${assemble.executable.name}</name>
 								</program>
 							</programs>
+							<extraJvmArguments>-Djava.library.path=lib/natives</extraJvmArguments>
 							<assembleDirectory>${assemble.dir}</assembleDirectory>
 							<repositoryName>lib</repositoryName>
 							<repositoryLayout>flat</repositoryLayout>
@@ -82,6 +85,24 @@
 								<unix>.sh</unix>
 							</binFileExtensions>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.googlecode.mavennatives</groupId>
+				<artifactId>maven-nativedependencies-plugin</artifactId>
+				<version>0.0.7</version>
+				<configuration>
+					<nativesTargetDir>${assemble.dir}/lib/natives</nativesTargetDir>
+					<separateDirs>false</separateDirs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>unpacknatives</id>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<phase>package</phase>
 					</execution>
 				</executions>
 			</plugin>
@@ -103,23 +124,6 @@
 							<goal>single</goal>
 						</goals>
 						<phase>install</phase>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>com.googlecode.mavennatives</groupId>
-				<artifactId>maven-nativedependencies-plugin</artifactId>
-				<version>0.0.7</version>
-				<configuration>
-					<nativesTargetDir>target/natives</nativesTargetDir>
-					<separateDirs>false</separateDirs>
-				</configuration>
-				<executions>
-					<execution>
-						<id>unpacknatives</id>
-						<goals>
-							<goal>copy</goal>
-						</goals>
 					</execution>
 				</executions>
 			</plugin>
