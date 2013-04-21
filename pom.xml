@@ -21,8 +21,9 @@
 		<n52.oxf.version>2.0.0-alpha.3-SNAPSHOT</n52.oxf.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<natives.target.basedir>lib/natives</natives.target.basedir>
 	</properties>
-	
+
 	<licenses>
 		<license>
 			<name>GPL v2</name>
@@ -75,7 +76,7 @@
 									<name>${assemble.executable.name}</name>
 								</program>
 							</programs>
-							<extraJvmArguments>-Djava.library.path=lib/natives</extraJvmArguments>
+							<extraJvmArguments>-Djava.library.path=${natives.target.basedir}/linux-${natives.classifier}${path.sep}${natives.target.basedir}/windows-${natives.classifier}</extraJvmArguments>
 							<assembleDirectory>${assemble.dir}</assembleDirectory>
 							<repositoryName>lib</repositoryName>
 							<repositoryLayout>flat</repositoryLayout>
@@ -93,8 +94,8 @@
 				<artifactId>maven-nativedependencies-plugin</artifactId>
 				<version>0.0.7</version>
 				<configuration>
-					<nativesTargetDir>${assemble.dir}/lib/natives</nativesTargetDir>
-					<separateDirs>false</separateDirs>
+					<nativesTargetDir>${assemble.dir}/${natives.target.basedir}</nativesTargetDir>
+					<separateDirs>true</separateDirs>
 				</configuration>
 				<executions>
 					<execution>
@@ -207,5 +208,54 @@
 			<version>${n52.oxf.version}</version>
 		</dependency>
 	</dependencies>
+
+
+	<profiles>
+		<profile>
+			<id>unix</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<path.sep>:</path.sep>
+			</properties>
+		</profile>
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<path.sep>;</path.sep>
+			</properties>
+		</profile>
+		<profile>
+			<id>amd64</id>
+			<activation>
+				<property>
+					<name>!architecture</name>
+				</property>
+			</activation>
+			<properties>
+				<natives.classifier>amd64</natives.classifier>
+			</properties>
+		</profile>
+		<profile>
+			<id>i586</id>
+			<activation>
+				<property>
+					<name>architecture</name>
+					<value>i586</value>
+				</property>
+			</activation>
+			<properties>
+				<natives.classifier>i586</natives.classifier>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
