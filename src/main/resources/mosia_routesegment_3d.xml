@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<RouteSegment gml:id="ID045033" xmlns:wps="http://www.opengis.net/wps/1.0.0"
+	xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:message="http://www.aixm.aero/schema/5.1/message" xmlns:gml="http://www.opengis.net/gml/3.2"
+	xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco"
+	xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gts="http://www.isotc211.org/2005/gts"
+	xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns="http://www.aixm.aero/schema/5.1"
+	xsi:schemaLocation="http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd http://www.aixm.aero/schema/5.1 http://www.aixm.aero/schema/5.1/AIXM_Features.xsd">
+	<gml:identifier codeSpace="urn:uuid:">1ed73038-6b37-4de7-aacf-826ca5897cbc</gml:identifier>
+	<timeSlice>
+		<RouteSegmentTimeSlice gml:id="ID045035">
+			<gml:validTime>
+				<gml:TimePeriod gml:id="ID045034">
+					<gml:beginPosition>2012-05-03T00:00:00.000Z</gml:beginPosition>
+					<gml:endPosition indeterminatePosition="unknown" />
+				</gml:TimePeriod>
+			</gml:validTime>
+			<interpretation>BASELINE</interpretation>
+			<featureLifetime>
+				<gml:TimePeriod gml:id="ID045036">
+					<gml:beginPosition>2012-05-03T00:00:00.000Z</gml:beginPosition>
+					<gml:endPosition indeterminatePosition="unknown" />
+				</gml:TimePeriod>
+			</featureLifetime>
+			<level>UPPER</level>
+			<upperLimit uom="FL">460</upperLimit>
+			<upperLimitReference>STD</upperLimitReference>
+			<lowerLimit uom="FL">245</lowerLimit>
+			<lowerLimitReference>STD</lowerLimitReference>
+			<reverseTrueTrack>110.1</reverseTrueTrack>
+			<reverseMagneticTrack>112</reverseMagneticTrack>
+			<length uom="NM">44.2</length>
+			<widthLeft uom="NM">5.0</widthLeft>
+			<widthRight uom="NM">6.0</widthRight>
+			<navigationType>RNAV</navigationType>
+			<start>
+				<EnRouteSegmentPoint gml:id="ID045037">
+					<reportingATC>COMPULSORY</reportingATC>
+					<pointChoice_navaidSystem
+						xlink:href="urn:uuid:8aa1c829-4ac8-4de6-8e1d-168d4b380237"></pointChoice_navaidSystem>
+				</EnRouteSegmentPoint>
+			</start>
+			<routeFormed xlink:href="urn:uuid:d05be4ac-4d48-4804-9d70-e61518717c22"></routeFormed>
+			<curveExtent>
+				<Curve gml:id="ID045038" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+					<gml:segments>
+						<gml:LineStringSegment>
+                        	<gml:posList srsDimension="2">
+							-5.6396944 41.5301944
+							-6.5608611 41.7865556
+							</gml:posList>
+						</gml:LineStringSegment>
+					</gml:segments>
+				</Curve>
+			</curveExtent>
+			<end>
+				<EnRouteSegmentPoint gml:id="ID045039">
+					<reportingATC>COMPULSORY</reportingATC>
+					<pointChoice_fixDesignatedPoint
+						xlink:href="urn:uuid:0ca47602-32bb-42c5-91be-55a6f30c01fe"></pointChoice_fixDesignatedPoint>
+				</EnRouteSegmentPoint>
+			</end>
+			<availability>
+				<RouteAvailability gml:id="ID045040">
+					<annotation>
+						<Note gml:id="ID045041">
+							<propertyName>timeInterval</propertyName>
+							<purpose>WARNING</purpose>
+							<translatedNote>
+								<LinguisticNote gml:id="ID045042">
+									<note lang="eng">No specific working hours within the specified periods.</note>
+								</LinguisticNote>
+							</translatedNote>
+						</Note>
+					</annotation>
+					<direction>BACKWARD</direction>
+					<status>OPEN</status>
+				</RouteAvailability>
+			</availability>
+			<annotation>
+				<Note gml:id="ID045043">
+					<purpose>REMARK</purpose>
+					<translatedNote>
+						<LinguisticNote gml:id="ID045044">
+							<note lang="eng">MADRID ACC</note>
+						</LinguisticNote>
+					</translatedNote>
+				</Note>
+			</annotation>
+			<extension>
+				<mosia:RouteSegment3DGeometryExtension>
+					<mosia:curveExtend3D>
+						<gml:Solid gml:id="curve-3d-1" srsName="urn:ogc:def:crs:OGC:1.3:CRS84:3D-FL"
+							srsDimension="3">
+							<gml:exterior>
+								<gml:CompositeSurface gml:id="curve-3d-1-surface">
+									<!-- bottom -->
+									<gml:surfaceMember>
+										<gml:Polygon gml:id="curve-3d-1-bottom">
+											<gml:exterior>
+												<gml:LinearRing>
+													<gml:posList>
+													-5.6826 41.4442 245
+													-6.6037 41.6991 245
+													-6.5195 41.8727 245
+													-5.5951 41.6154 245
+													-5.6826 41.4442 245
+													</gml:posList>
+												</gml:LinearRing>
+											</gml:exterior>
+										</gml:Polygon>
+									</gml:surfaceMember>
+									<!-- top -->
+									<gml:surfaceMember>
+										<gml:Polygon gml:id="curve-3d-1-bottom">
+											<gml:exterior>
+												<gml:LinearRing>
+													<gml:posList>
+													-5.6826 41.4442 460
+													-6.6037 41.6991 460
+													-6.5195 41.8727 460
+													-5.5951 41.6154 460
+													-5.6826 41.4442 460
+													</gml:posList>
+												</gml:LinearRing>
+											</gml:exterior>
+										</gml:Polygon>
+									</gml:surfaceMember>
+									<!-- front -->
+									<gml:surfaceMember>
+										<gml:Polygon gml:id="curve-3d-1-bottom">
+											<gml:exterior>
+												<gml:LinearRing>
+													<gml:posList>
+													-5.6826 41.4442 245
+													-5.6826 41.4442 460
+													-5.5951 41.6154 460
+													-5.5951 41.6154 245
+													-5.6826 41.4442 245
+													</gml:posList>
+												</gml:LinearRing>
+											</gml:exterior>
+										</gml:Polygon>
+									</gml:surfaceMember>
+									<!-- back -->
+									<gml:surfaceMember>
+										<gml:Polygon gml:id="curve-3d-1-bottom">
+											<gml:exterior>
+												<gml:LinearRing>
+													<gml:posList>
+													-6.6037 41.6991 245
+													-6.6037 41.6991 460
+													-6.5195 41.8727 460
+													-6.5195 41.8727 245
+													-6.6037 41.6991 245
+													</gml:posList>
+												</gml:LinearRing>
+											</gml:exterior>
+										</gml:Polygon>
+									</gml:surfaceMember>
+									<!-- left -->
+									<gml:surfaceMember>
+										<gml:Polygon gml:id="curve-3d-1-bottom">
+											<gml:exterior>
+												<gml:LinearRing>
+													<gml:posList>
+													-5.6826 41.4442 245
+													-6.6037 41.6991 245
+													-6.6037 41.6991 460
+													-5.6826 41.4442 460
+													-5.6826 41.4442 245
+													</gml:posList>
+												</gml:LinearRing>
+											</gml:exterior>
+										</gml:Polygon>
+									</gml:surfaceMember>
+									<!-- right -->
+									<gml:surfaceMember>
+										<gml:Polygon gml:id="curve-3d-1-bottom">
+											<gml:exterior>
+												<gml:LinearRing>
+													<gml:posList>
+													-5.5951 41.6154 245
+													-6.5195 41.8727 245
+													-6.5195 41.8727 460
+													-5.5951 41.6154 460
+													-5.5951 41.6154 245
+													</gml:posList>
+												</gml:LinearRing>
+											</gml:exterior>
+										</gml:Polygon>
+									</gml:surfaceMember>
+								</gml:CompositeSurface>
+							</gml:exterior>
+						</gml:Solid>
+					</mosia:curveExtend3D>
+				</mosia:RouteSegment3DGeometryExtension>
+			</extension>
+		</RouteSegmentTimeSlice>
+	</timeSlice>
+</RouteSegment>
