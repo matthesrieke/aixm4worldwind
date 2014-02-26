@@ -18,7 +18,7 @@
 		<assemble.bin.folder>bin</assemble.bin.folder>
 		<wwj.version>1.5.0-SNAPSHOT</wwj.version>
 		<n52.xml.version>1.1.4</n52.xml.version>
-		<n52.oxf.version>2.0.0-alpha.3-SNAPSHOT</n52.oxf.version>
+		<n52.oxf.version>2.0.0-alpha.3</n52.oxf.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<natives.target.basedir>lib/natives</natives.target.basedir>

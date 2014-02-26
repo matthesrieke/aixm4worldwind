@@ -24,6 +24,10 @@ import java.io.IOException;
 import java.util.Date;
 
 import org.apache.xmlbeans.XmlException;
+import org.n52.oxf.conversion.unit.CustomUnitConverter;
+import org.n52.oxf.conversion.unit.NumberWithUOM;
+import org.n52.oxf.conversion.unit.UOMTools;
+import org.n52.oxf.conversion.unit.ucum.UCUMTools;
 import org.n52.worldwind.aixm.AIXMFactory;
 import org.n52.worldwind.aixm.xmlbeans.TimeSliceTools;
 
@@ -37,6 +41,25 @@ public class DemoAirspaceLayer extends AirspaceLayer {
 
 	public DemoAirspaceLayer() throws XmlException, IOException {
 		super();
+		
+		UOMTools.addCustomUnitConverter(new CustomUnitConverter() {
+			
+			@Override
+			public String getUnitString() {
+				return "NM";
+			}
+			
+			@Override
+			public String getBaseUnit() {
+				return "m";
+			}
+			
+			@Override
+			public NumberWithUOM convert(double doubleValue) {
+				return UCUMTools.convert("[nmi_i]", doubleValue);
+			}
+		});
+		
 		this.airspace = createAirspace();
 		this.route = createRoute();
 		this.addAirspace(getAirspace());
@@ -45,7 +68,7 @@ public class DemoAirspaceLayer extends AirspaceLayer {
 	}
 
 	private Airspace createRoute() throws XmlException, IOException {
-		RouteSegmentDocument routeDoc = RouteSegmentDocument.Factory.parse(getClass().getResourceAsStream("/aixm_test1_routesegment_touches.xml"));
+		RouteSegmentDocument routeDoc = RouteSegmentDocument.Factory.parse(getClass().getResourceAsStream("/mosia_routesegment.xml"));
 
 		TimeSliceTools.resolveTimeSliceFromValidTime(routeDoc.getRouteSegment(), new Date());
 		
@@ -56,7 +79,7 @@ public class DemoAirspaceLayer extends AirspaceLayer {
 	}
 
 	private Airspace createAirspace() throws XmlException, IOException {
-		AirspaceDocument routeDoc = AirspaceDocument.Factory.parse(getClass().getResourceAsStream("/aixm_test1_airspace.xml"));
+		AirspaceDocument routeDoc = AirspaceDocument.Factory.parse(getClass().getResourceAsStream("/mosia_airspace.xml"));
 
 		TimeSliceTools.resolveTimeSliceFromValidTime(routeDoc.getAirspace(), new Date());
 		

@@ -151,7 +151,7 @@ public class WorldWindMap extends JFrame {
 		Angle fov = wwjPanel.getWwd().getView().getFieldOfView();
 
 		double zoom = extent.getRadius() / (fov.tanHalfAngle() * fov.cosHalfAngle());
-		Position centerPos =  Position.fromDegrees(52.0, 7.0, zoom);
+		Position centerPos =  Position.fromDegrees(41.5301944, -5.6396944, zoom);
 
 		wwjPanel.getWwd().getView().goTo(centerPos, zoom*2);
 	}
